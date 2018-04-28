@@ -59,10 +59,10 @@ for(i in 1:4){
   plot(res)
   dev.off()
 }
-plot(0.4982 * EuStockMarkets[, 2] + 0.4957*EuStockMarkets[, 3] - 0.0172 * EuStockMarkets[,4], col = "red") 
-lines(7.263e-01* EuStockMarkets[,1] + 9.905e-02 * EuStockMarkets[,3] + 8.451e-01 * EuStockMarkets[, 4], col = "blue")
-lines(0.72037 * EuStockMarkets[, 1] + 0.09767 * EuStockMarkets[, 2] -0.40078*EuStockMarkets[,4], col = "green")
-lines(-0.02123 * EuStockMarkets[, 1] + 0.70758  * EuStockMarkets[, 2]  -0.34029*EuStockMarkets[,3])
+plot(EuStockMarkets[, 1], col = "red", ylab = "DAX SMI CAC FTSE")
+lines(EuStockMarkets[, 2], col = "blue")
+lines(EuStockMarkets[, 3], col = "green")
+lines(EuStockMarkets[, 4], col = "yellow")
 
 #Unit 6
 library(datasets)
@@ -131,8 +131,14 @@ plot(pred, x = (1980:2016))
 #Unit 9
 library(datasets)
 A <- cars
+plot(A)
 res<-lm(dist~speed, data = A)
 plot(res$fitted.values)
-new <-data.frame(speed=40)
-pred <- predict(res,newdata = new)
+new <-data.frame(speed=25:40)
+dist <- c(predict(res,newdata = new))
+new <- cbind(new, dist)
+plot(new)
+new2 <-data.frame(speed=40)
+pred <- predict(res,newdata = new2)
 print(pred)
+
